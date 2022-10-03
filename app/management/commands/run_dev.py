@@ -22,6 +22,13 @@ def send_webhook(url):
     )
     return response
 
+def create_webhook_sheet(url):
+    url += '/sheet_webhook/'
+    os.environ['VALUES_HOOK_SHEET'] = url
+    settings.VALUES_HOOK_SHEET = url
+    return url
+
+
 
 
 
@@ -44,7 +51,9 @@ class Command(BaseCommand):
             os.environ['PUBLIC_URL'] = public_url
             self.stdout.write(self.style.SUCCESS(f'Successfully poll {public_url=}'))
             response = send_webhook(public_url)
+            url_set_sheet = create_webhook_sheet(public_url)
             if settings.DEBUG:
                 logger.info(f'Telegram setWebhook response {response}')
+                logger.info(f'Sheet create  {url_set_sheet=}')
         settings.ALLOWED_HOSTS.append(urlparse(os.environ['PUBLIC_URL']).netloc)
         call_command('runserver', '8000')
