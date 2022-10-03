@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from app.models import DataBase
-
+from datetime import datetime
 DICT_MAP = {
     "заказ №": {'name': 'order_number',
                 'validators': int},
@@ -38,4 +38,6 @@ class SheetPostSerializer(serializers.ModelSerializer):
         name_row = validated_data.pop('name_row')
         value = validated_data.pop('value')
         validated_data.update({name_row: value})
+        delivery_time_str = validated_data.pop('delivery_time')
+        validated_data.update({'delivery_time': datetime.strptime(delivery_time_str, '%Y-%m-%dT%H:%M:%S.%f%z')})
         return validated_data
