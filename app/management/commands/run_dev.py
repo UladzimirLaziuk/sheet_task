@@ -56,4 +56,4 @@ class Command(BaseCommand):
                 logger.info(f'Telegram setWebhook response {response}')
                 logger.info(f'Sheet create  {url_set_sheet=}')
         settings.ALLOWED_HOSTS.append(urlparse(os.environ['PUBLIC_URL']).netloc)
-        call_command('runserver', '8000')
+        call_command('runserver', '0.0.0.0:8000')#runserver 0.0.0.0:8000

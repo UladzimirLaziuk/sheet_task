@@ -151,7 +151,7 @@ VERS = "v4"
 VALUES_HOOK_SHEET = os.environ.get('VALUES_HOOK_SHEET')
 FILE_CREDENTIALS = 'credentials.json'
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
-SPREADSHEET_ID = '1cSvJwQ630DDLZ7zquPz7oV8Okze0-4scTSmJJyMhyf4'
+SPREADSHEET_ID = '191DWmv0aIe7vK1fRymtfpI4ojMmgwoE9Rd13JrAnWj8'
 
 SETTINGS_RANGE = 'A:D'
 CURRENCY_ID = 'R01235'

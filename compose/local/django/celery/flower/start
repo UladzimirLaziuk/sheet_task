@@ -13,6 +13,6 @@ until worker_ready; do
 done
 >&2 echo 'Celery workers is available'
 
-celery -A my_app  \
+celery -A sheet_task  \
     --broker="${CELERY_BROKER}" \
     flower
