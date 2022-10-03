@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
+import logging
 import os
 from pathlib import Path
 
@@ -29,7 +30,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 DEBUG = os.getenv("DEBUG", True)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '*']
 
 
 # Application definition
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -126,3 +128,34 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOCAL_DEVELOPMENT = os.environ.get('DEBUG', False)
+
+# CELERY_IMPORTS = ("app.tasks",)
+CELERY_BROKER_URL = os.environ.get("CELERY_BROKER", "redis://127.0.0.1:6379/0")
+CELERY_RESULT_BACKEND = os.environ.get("CELERY_BACKEND", "redis://127.0.0.1:6379/0")
+
+
+TELEGRAM_TOKEN = os.environ['TELEGRAM_TOKEN']
+PUBLIC_URL = os.environ.get('PUBLIC_URL')
+# TELEGRAM_WEBHOOK_URL_ROOT = os.environ.get('TELEGRAM_WEBHOOK_URL_ROOT')
+# TELEGRAM_WEBHOOK_URL = TELEGRAM_WEBHOOK_URL_ROOT + '/telegramwebhook/'
+
+# URL for send commands to telegram
+TELEGRAM_API_ROOT = 'https://api.telegram.org'
+TELEGRAM_API_URL = TELEGRAM_API_ROOT + '/bot' + TELEGRAM_TOKEN + '/'
+
+logging.basicConfig(level=logging.INFO)
+
+SHEETS = "sheets"
+VERS = "v4"
+VALUES_HOOK_SHEET = os.environ.get('VALUES_HOOK_SHEET')
+FILE_CREDENTIALS = 'credentials.json'
+SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
+SPREADSHEET_ID = '1cSvJwQ630DDLZ7zquPz7oV8Okze0-4scTSmJJyMhyf4'
+
+SETTINGS_RANGE = 'A:D'
+CURRENCY_ID = 'R01235'
+URL_PATTERN_CBR = 'https://www.cbr.ru/scripts/XML_dynamic.asp?date_req1={}&date_req2={}&VAL_NM_RQ={}'
+SETTING_RANGE_WRITE_HOOK = "settings!A2:A2"
+
