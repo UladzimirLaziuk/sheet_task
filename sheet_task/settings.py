@@ -131,15 +131,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOCAL_DEVELOPMENT = os.environ.get('DEBUG', False)
 
-# CELERY_IMPORTS = ("app.tasks",)
+
 CELERY_BROKER_URL = os.environ.get("CELERY_BROKER", "redis://127.0.0.1:6379/0")
 CELERY_RESULT_BACKEND = os.environ.get("CELERY_BACKEND", "redis://127.0.0.1:6379/0")
 
 
 TELEGRAM_TOKEN = os.environ['TELEGRAM_TOKEN']
 PUBLIC_URL = os.environ.get('PUBLIC_URL')
-# TELEGRAM_WEBHOOK_URL_ROOT = os.environ.get('TELEGRAM_WEBHOOK_URL_ROOT')
-# TELEGRAM_WEBHOOK_URL = TELEGRAM_WEBHOOK_URL_ROOT + '/telegramwebhook/'
+
 
 # URL for send commands to telegram
 TELEGRAM_API_ROOT = 'https://api.telegram.org'
